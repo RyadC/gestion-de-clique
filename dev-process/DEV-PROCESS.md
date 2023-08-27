@@ -14,5 +14,20 @@ Ensuite, j'ai pu créer une branche de développement dédiée à l'intégration
 
 ![La branche html-integration sur GITLENS](./images/Git%20-%20Branche%20html-integration.png)
 
+### Structure de base HTML
 
+J'ai commencé à travailler sur le code HTML, à y faire le squelette principal selon ce que j'ai compris de la maquette. Evidemment, iml est fort probable que j'en vienne à modifier certains éléments lorsque je vais attaquer le CSS et le JS mais le but et d'y réfléchir afin de modifier au moins la structure HTML.
 
+Voulant travailler avec SCSS, j'ai écris les noms de classe selon la convention de nommage BIM ce qui me permettra d'optimiser le temps de code sur le css en nestant les éléments dans le fichier scss. (image)
+
+### Structure de base CSS
+
+Après avoir créé la structure HTML, j'ai créé une branche de développement pour le CSS.
+
+Concernant mon arborescence de fichiers, je me suis basé sur l'architecture 7-1.
+
+![Architecture 7-1 SCSS](./images/SCSS%20-%20Architecture%207-1.png)
+
+En écrivant le CSS, je me suis rendu compte que certains noms de classe n'étaient pas pertinents, je les ai donc changés. J'ai également changé mes entrées de chiffres en input afin que ces champs soient directement modifiables par l'utilisateur.
+
+Etant donné que j'ai modifié mon fichier HTML, un bon git merge pour rassembler le tout. 

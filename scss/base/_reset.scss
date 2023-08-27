@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+// Remove arrows from input number
+input{
+	/* Firefox */
+	-moz-appearance: textfield;
+ 
+	/* Chrome */
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin:0;
+	}
+ 
+	/* Opéra*/
+	&::-o-inner-spin-button {
+		-o-appearance: none;
+		margin: 0; 
+	}
+}

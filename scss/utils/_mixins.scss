@@ -1,0 +1,28 @@
+@mixin flexbox-col-start-center{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@mixin flexbox-col-center-center{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flexbox-row-between-center{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin title {
+  font-size: $title-size;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: $gray;
+}
