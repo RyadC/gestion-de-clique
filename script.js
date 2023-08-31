@@ -60,3 +60,7 @@ el_AreaClick.addEventListener('contextmenu', (e) => {
   decrementCount();
 });
 
+el_AreaClick.addEventListener('click', () => {
+  incrementCount();
+});
+
