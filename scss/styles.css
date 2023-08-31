@@ -1,24 +1,8 @@
-@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
-}
-
-input {
-  /* Firefox */
-  -moz-appearance: textfield;
-  /* Chrome */
-  /* Opéra*/
-}
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-input::-o-inner-spin-button {
-  -o-appearance: none;
-  margin: 0;
 }
 
 @font-face {
@@ -83,8 +67,17 @@ body {
   border-radius: 15px 15px 0 0;
   cursor: pointer;
 }
+.modify-counter__btn:hover, .modify-counter__btn :focus {
+  background-color: #9ae2fc;
+}
+.modify-counter__btn:active {
+  background-color: white;
+  color: #4bcfff;
+}
 .modify-counter__input {
   background-color: rgba(255, 255, 255, 0.3);
+  outline: none;
+  padding-left: 15px;
   font-size: 45px;
   text-align: center;
   color: white;
@@ -92,6 +85,9 @@ body {
   width: 95px;
   height: 95px;
   border-radius: 0 0 15px 15px;
+}
+.modify-counter__input:focus:hover {
+  box-shadow: 0 0 0 6px rgba(75, 207, 255, 0.75);
 }
 
 .limit {
@@ -109,14 +105,20 @@ body {
 }
 .limit__input {
   background-color: rgba(255, 255, 255, 0.3);
-  width: 110px;
-  text-align: center;
-  border: none;
-  padding: 13px 25px;
-  border-radius: 15px;
-  margin-top: 15px;
-  color: white;
+  outline: none;
   font-size: 45px;
+  width: 130px;
+  text-align: center;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  padding: 13px 25px;
+  padding-left: 15px;
+  padding-right: 0;
+  margin-top: 15px;
+}
+.limit__input:focus:hover {
+  box-shadow: 0 0 0 6px rgba(75, 207, 255, 0.75);
 }
 
 .reset {
@@ -129,6 +131,13 @@ body {
   font-size: 36px;
   color: white;
   cursor: pointer;
+}
+.reset:hover, .reset :focus {
+  background-color: #9ae2fc;
+}
+.reset:active {
+  background-color: white;
+  color: #4bcfff;
 }
 
 /* CLICK AREA SECTION */

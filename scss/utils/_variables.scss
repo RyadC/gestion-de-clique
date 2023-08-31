@@ -4,6 +4,8 @@ $display-height: 1000px;
 $padding-limit-input: 13px 25px;
 $marginTop-limit-input: 15px;
 $display-width-content-max: 85%;
+$paddingLeft-input: 15px;
+$width-limit-input: 130px;
 
 // SIZES
 $title-size: 14px;
@@ -22,3 +24,4 @@ $gray: #bdbec0;
 $dark-red: #ff866e;
 $transparent-gray: rgba(255, 255, 255, 0.3);
 $transparent-dark-gray: rgba(255, 255, 255, 0.5);
+$input-shadow: 0 0 0 6px rgba(75, 207, 255, .75);

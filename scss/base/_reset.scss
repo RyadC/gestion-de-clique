@@ -6,19 +6,19 @@
 }
 
 // Remove arrows from input number
-input{
-	/* Firefox */
-	-moz-appearance: textfield;
+// input{
+// 	/* Firefox */
+// 	// -moz-appearance: textfield;
  
-	/* Chrome */
-	&::-webkit-inner-spin-button {
-		-webkit-appearance: none;
-		margin:0;
-	}
+// 	/* Chrome */
+// 	&::-webkit-inner-spin-button {
+// 		// -webkit-appearance: none;
+// 		margin:0;
+// 	}
  
-	/* Opéra*/
-	&::-o-inner-spin-button {
-		-o-appearance: none;
-		margin: 0; 
-	}
-}
+// 	/* Opéra*/
+// 	&::-o-inner-spin-button {
+// 		// -o-appearance: none;
+// 		margin: 0; 
+// 	}
+// }
