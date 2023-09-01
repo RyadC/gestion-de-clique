@@ -11,6 +11,11 @@ const el_ResetBtn = document.querySelector('.reset');
 
 const el_AreaClick = document.querySelector('.click-area');
 
+const el_ErrorMessage = document.querySelector('.error-message__container');
+
+const el_HighLimitInput = document.querySelector('.high-limit__input');
+const el_LowLimitInput = document.querySelector('.low-limit__input');
+
 
 /*** VARIABLES GLOBALES ***/
 let counterValue = Number(el_Counter.textContent);
@@ -32,16 +37,18 @@ function decrementCount() {
 function incrementCount() {
   counterValue += Number(el_InputInc.value);
   el_Counter.textContent = counterValue;
+
+  displayErrorMessageReachedLimit(el_HighLimitInput.value, counterValue)
 }
 
 
 /*** COOOOOOODE ***/
 
 /* Incrémentation du compteur */
-el_BtnInc.addEventListener('click', incrementCount());
+el_BtnInc.addEventListener('click', incrementCount);
 
 /* Décrémentation du compteur */
-el_BtnDec.addEventListener('click', decrementCount());
+el_BtnDec.addEventListener('click', decrementCount);
 
 /* Remettre le compteur à 0 avec le bouton "Reset" */
 el_ResetBtn.addEventListener('click', () => {
@@ -56,5 +63,17 @@ el_AreaClick.addEventListener('contextmenu', (e) => {
 });
 
 /* Incrémenter au clique gauche sur la zone de cliques */
-el_AreaClick.addEventListener('click', incrementCount());
+el_AreaClick.addEventListener('click', incrementCount);
+
+
+/* Faire afficher le message d'erreur lorsque la limite est atteinte */
+function displayErrorMessageReachedLimit(limitValue) {
+  if(Number(limitValue) === counterValue) {
+    console.log('limite atteinte')
+    el_ErrorMessage.classList.add('displayError');
+    setTimeout(() => {
+      el_ErrorMessage.classList.remove('displayError');
+    }, 1000); 
+  }
+}
 

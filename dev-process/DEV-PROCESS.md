@@ -96,3 +96,15 @@ Pour décrémenter via le clic droit, la situation est un peu différente. Tout 
 Lors d'un clic droit, le navigateur ouvre un menu contextuel par défaut. L'affichage de ce menu est gênant et vient rompre le fonctionnement "normal" d'un clic. Ainsi, il s'en va de désactiver ce comportement par défaut en utilisant l'évènement `contextmenu` via la fonction `preventDefault()`. Ainsi, on optera pour cet évènement, sachant égalemnt qu'il s'agit de l'évènement qui nécessite le moins d'écriture de code comparé à d'autres évènements.
 
 ![Décrémentation via le clic droit](/dev-process/images/JS%20-%20Décrémentation%20par%20clic%20droit.png)
+
+### BUG ! 🪳
+
+En essayant de factoriser mon code, je me suis rendu compte que mes fonctionnalités ne fonctionnaient plus !😭
+
+Les boutons ne fonctionnaient plus et la page affichait le compteur avec la valeur de 8 et non 12 comme initié dans le HTML. Après quelques recherche 🔍... Le problème venait des fonctions que j'utilisais comme callback :
+
+![Fonctions inc et dec utilisées dans les callbacks](/dev-process/images/JS%20-%20Fonctions%20inc%20et%20dec%20utilisées%20dans%20les%20callbacks.png)
+
+L'erreur ? Les parenthèses utilisées à la suite des fonctions. En effet, utiliser des parenthèses à la suite d'une fonction à pour conséquence d'appeler les fonctions, les exécuter. Ainsi, en chargant la page, les fonctions s'exécutaient et n'étaient plus vraiement des fonctions d'appel. La solution étant d'enlever ces parenthèses pour indiquer à l'interpréteur JS que ces fonctions doivent être utilisées lors du clic seulement.
+
+### Création et affichage d'un message d'erreur lors de la limite atteinte

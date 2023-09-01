@@ -11,12 +11,16 @@
 <body>
   
   <div class="container">
+    <div class="error-message__container">
+      <p class="error-message__container__text">Vous avez atteint la limite</p>
+    </div>
+
     <section class="counter-section">
       <div class="high-limit limit">
         <p class="high-limit__title limit__title">
           Limite haute
         </p>
-        <input type="number" class="high-limit__input limit__input " value="42" />
+        <input type="number" class="high-limit__input limit__input" value="15" />
       </div>
       
       <div class="counter-block">
@@ -29,7 +33,7 @@
         
         <div class="counter-increment modify-counter">
           <button type="button" class="counter-increment__btn modify-counter__btn">+</button>
-          <input type="number" class="counter-increment__input modify-counter__input" value="0" min="0" />
+          <input type="number" class="counter-increment__input modify-counter__input" value="1" min="0" />
         </div>
       </div>
       
