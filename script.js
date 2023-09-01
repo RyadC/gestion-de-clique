@@ -60,6 +60,7 @@ el_AreaClick.addEventListener('contextmenu', (e) => {
   decrementCount();
 });
 
+/* Incrémenter au clique gauche sur la zone de cliques */
 el_AreaClick.addEventListener('click', () => {
   incrementCount();
 });
