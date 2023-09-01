@@ -71,3 +71,28 @@ Il suffit de récupérer l'élément HTML du bouton "Reset" puis de remettre à 
 Et voici :
 
 ![Simulation de clique sur le bouton "reset"](/dev-process/video/Reset-du-compteur.gif)
+
+### Refactorisation nécessaire
+
+La prochaine fonctionnalité "Incrémentation et décrémentation du compteur via la zone de cliques" étant proche des fonctionnalités différentes, il était nécessaire et judicieux de refactoriser le code, cela pour appliquer un principe de programmation bien connu <font color="#AB7349">**D.R.Y**</font> (Don't Repeat Yourself).
+
+![Refactorisation du code pour l'incrémentation et la décrémentation](/dev-process/images/JS%20-%20Refactorisation%20du%20code%20incrémenter%20et%20décrémenter.png)
+
+
+### Incrémentation et décrémentation du compteur via la zone de cliques
+
+La fonctionnalité demandée ici est quelque peu différente. En effet, on demande ici d'agir sur le compteur via de simples cliques soit le clique droit de la souris pour décrémenter et le clique gauche pour incrémenter le compteur. 
+
+#### Clic gauche : incrémenter
+
+Pour l'incrémentation, aucune différence avec le code du bouton :
+
+![Incrémentation via le clic gauche](/dev-process/images/JS%20-%20Incrémentation%20par%20clic%20gauche.png)
+
+#### Clic droit : décrémenter
+
+Pour décrémenter via le clic droit, la situation est un peu différente. Tout d'abord il faut checher l'évènement lié au clic droit. En recherchant sur le [MDN](https://developer.mozilla.org/fr/docs/Web/API/Element#%C3%A9v%C3%A8nements). Les évènements `mousedown`, `mouseup`, `auxclick` et `contextmenu` peuvent être utilisés. Pour fair un choix, il faut réfléchir sur les contraintes de chacun de ces évènements mais aussi de voir s'ils répondent à notre problèmatique.
+
+Lors d'un clic droit, le navigateur ouvre un menu contextuel par défaut. L'affichage de ce menu est gênant et vient rompre le fonctionnement "normal" d'un clic. Ainsi, il s'en va de désactiver ce comportement par défaut en utilisant l'évènement `contextmenu` via la fonction `preventDefault()`. Ainsi, on optera pour cet évènement, sachant égalemnt qu'il s'agit de l'évènement qui nécessite le moins d'écriture de code comparé à d'autres évènements.
+
+![Décrémentation via le clic droit](/dev-process/images/JS%20-%20Décrémentation%20par%20clic%20droit.png)

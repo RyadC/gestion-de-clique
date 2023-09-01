@@ -12,41 +12,36 @@ const el_ResetBtn = document.querySelector('.reset');
 const el_AreaClick = document.querySelector('.click-area');
 
 
-// console.log(el_BtnDec)
+/*** VARIABLES GLOBALES ***/
+let counterValue = Number(el_Counter.textContent);
+
+
 
 /*** FONCTIONS ***/
 /**
  * Decrement the counter with the input decrement value
  */
 function decrementCount() {
-  let counterValue = Number(el_Counter.textContent);
-  let decrementValue = Number(el_InputDec.value);
-  let newCounterValue = counterValue - decrementValue;
-  el_Counter.textContent = newCounterValue;
+  counterValue -= el_InputDec.value;
+  el_Counter.textContent = counterValue;
 }
 
 /**
  * Increment the counter with the input decrement value
  */
 function incrementCount() {
-  let counterValue = Number(el_Counter.textContent);
-  let incrementValue = Number(el_InputInc.value);
-  let newCounterValue = counterValue + incrementValue;
-  el_Counter.textContent = newCounterValue;
+  counterValue += Number(el_InputInc.value);
+  el_Counter.textContent = counterValue;
 }
 
 
 /*** COOOOOOODE ***/
 
 /* Incrémentation du compteur */
-el_BtnInc.addEventListener('click', () => {
-  incrementCount();
-});
+el_BtnInc.addEventListener('click', incrementCount());
 
 /* Décrémentation du compteur */
-el_BtnDec.addEventListener('click', () => {
-  decrementCount();
-});
+el_BtnDec.addEventListener('click', decrementCount());
 
 /* Remettre le compteur à 0 avec le bouton "Reset" */
 el_ResetBtn.addEventListener('click', () => {
@@ -61,7 +56,5 @@ el_AreaClick.addEventListener('contextmenu', (e) => {
 });
 
 /* Incrémenter au clique gauche sur la zone de cliques */
-el_AreaClick.addEventListener('click', () => {
-  incrementCount();
-});
+el_AreaClick.addEventListener('click', incrementCount());
 
