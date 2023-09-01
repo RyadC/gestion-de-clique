@@ -29,6 +29,8 @@ let counterValue = Number(el_Counter.textContent);
 function decrementCount() {
   counterValue -= el_InputDec.value;
   el_Counter.textContent = counterValue;
+
+  displayErrorMessageReachedLimit(el_LowLimitInput.value, counterValue)
 }
 
 /**
