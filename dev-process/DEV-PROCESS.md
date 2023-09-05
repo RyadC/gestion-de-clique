@@ -1,4 +1,4 @@
-# Gestion de cliques
+ Gestion de cliques
 
 Le but de ce fichier est de montrer les différentes étapes de développement, fonctionnalité par fonctionnalité, étape par étape. Il à également pour but d'exposer les problèmes rencontrés au fur et à mesure de l'avancement du projet ainsi que les moyens mis en oeuvre pour les résoudre. 
 
@@ -108,3 +108,77 @@ Les boutons ne fonctionnaient plus et la page affichait le compteur avec la vale
 L'erreur ? Les parenthèses utilisées à la suite des fonctions. En effet, utiliser des parenthèses à la suite d'une fonction à pour conséquence d'appeler les fonctions, les exécuter. Ainsi, en chargant la page, les fonctions s'exécutaient et n'étaient plus vraiement des fonctions d'appel. La solution étant d'enlever ces parenthèses pour indiquer à l'interpréteur JS que ces fonctions doivent être utilisées lors du clic seulement.
 
 ### Création et affichage d'un message d'erreur lors de la limite atteinte
+
+Le but est d'ajouter un message d'erreur qui devra apparaître lorsque les limites haute et basse seront atteinte puis de faire disparaître le message après 1s.
+
+Il a fallut tout d'abord créer le code HTML du message d'erreur ainsi que le code CSS pour d'une part, styliser cet élément, puis d'une seconde part, styliser la classe qui va nous permettre de faire apparaître le message en cas de limite atteinte.
+
+![Elements HTML du message d'erreur lorsque la limite est atteinte](/dev-process/images/HTML%20-%20Elemnt%20message%20d'erreur.png)
+
+![CSS pour le message d'erreur lorsque la limite est atteinte](/dev-process/images/CSS%20-%20Message%20d'erreur.png)
+
+![Classe CSS pour afficher le message d'erreur lorsque la limite est atteinte](/dev-process/images/CSS%20-%20Classe%20d'affichage%20pour%20le%20message%20d'erreur.png)
+
+Pour se faire, il suffit d'ajouter dynamiquement une classe CSS à l'élément représentant le message d'erreur. Cette classe devra être ajoutée lorsque les limites seront atteintes. On pourra faire disparaître le message en retirant la classe précédemment ajoutée après trois secondes. L'exécution du code JS après un délai dans le navigateur peu se faire avec la méthode setTimeout fourni par l'API DOM sur l'objet global `window` (à noter que nous pouvons directement écrire la méthode sans la précéder de l'objet window. Lorsque l'interpréteur JS rencontre une fonction tel quel, il l'a relie à l'objet global et essaie de l'exécuter ainsi) :
+
+![Code JS pour afficher le message d'erreur lorsque la limite est atteinte et le faire disparaître](/dev-process/images/JS%20-%20Afficher%20le%20message%20d'erreur.png)
+
+Il faut maintenant lier cette fonction aux divers boutons et éléments permettant l'incrémentation et la décrémetation :
+
+![Liaison de la fonction d'affichage du message d'erreur aux éléments d'incrémentation et de décrémentation](/dev-process/images/JS%20-%20Liaison%20de%20la%20fonction%20d'affichage%20du%20message%20d'erreur%20aux%20elements%20d'inc%20et%20de%20dec.png)
+
+### Changer le texte du message d'erreur dynamiquement selon la limite haute ou basse atteinte
+
+Souvent, développer une fonctionnalité nécessite de résoudre plusieurs sous problèmes. 
+
+Le code que j'ai écris permettant d'afficher le message d'erreur n'affiche le message que s'il trouve que la valeur du compteur est égale à la valeur de la limite :
+
+![Code JS montrant l'utilisation de la strict égalité pour afficher le message d'erreur lorsque la limite est atteinte](/dev-process/images/JS%20-%20Afficher%20le%20message%20d'erreur%20strict%20égalité.png)
+
+Le problème est que je peux utiliser des step our incrémenter ou décrémenter mon compteur. C'est-à-dire que je peux augmenter de deux en deux mon compteur. Ainsi, avec une limite haute de 15 et un compteur à 12, si j'augmente de 5, le message d'erreur ne s'affiche pas car mon compteur dépasse la valeur limite et n'est pas égale à la limite :
+
+Pour palier à ce problème, j'ai changer l'égalité strict par `<=` ou `>=` selon la limite. Pour se faire, j'ai crée un bloc d'instruction `switch` qui, selon l'action va effecter la comparaison qu'il faut. Par la même occasion, j'en ai profité pour factoriser le code. Une solution plus simple est certainement possible mais pour l'instant l'essentiel est de résoudre ce problème avec un code maintenable:
+
+![Afficher le message d'erreur selon la limite atteinte](/dev-process/images/JS%20-%20Afficher%20le%20message%20d'erreur%20selon%20la%20limite%20atteinte.png)
+
+Pour revenir à ma fonctionnnalité, voici le code que j'ai pu écrire afin d'afficher dynamiquement le contenu du message :
+
+![Afficher d'un message dynamique](/dev-process/images/JS%20-%20Affichage%20d'un%20message%20dynamique.png)
+
+
+### Bloquer le compteur à la valeur de la limite lorsque celle-ci est atteinte
+
+Le code est sensiblement le même pour les deux limites. La différence va être sur les comparaisons :
+
+![Atteinte du compteur dès la limite atteinte](/dev-process/images/JS%20-%20Blocage%20du%20compteur%20dès%20la%20limite%20atteinte.png)
+
+### Ajouter un effet au compteur lorsque la limite est atteinte
+...
+
+### Bug 🪳: lorsque la limite basse est supérieure à 0
+
+Je pensais que tout était bon... mais non. En effet, lorsque mon compteur est initialisé à 0 (valeur de départ) et que la valeur basse est supérieur à 0, on s'attend à ce que la valeur du compteur passe de 0 à la valeur de la limite basse directement mais là le compteur s'incrémente de un en un sans prendre en considération cette restriction de limite. Le compteur évolue donc en dehors de sa limite.
+
+<!-- video -->
+
+Pour corriger ce comportement, il fallait simplement ajouter une condition venant contrôler si le compteur est inférieur à la limite basse et agir en conséquence.
+
+<!-- Photo -->
+
+### Bug 🪳: lorsque la limite haute est inférieure à la limite basse (impossible !)
+
+Nouvelle surprise lors des tests... Il est possible d'incrémenter la limite basse de sorte à ce que celle-ci soit supérieure à la limite haute ce qui ne devrait pas être possible. Il faudrait donc empêcher cela et (côté UX) ajouter un message d'erreur pour faire comprendre cela à l'utilisateur.
+
+<!-- vidéo -->
+
+### Bug 🪳: lorsqu'on veut modifier la limite par clavier
+
+Avec le code actuel, il n'est pas possible de modifier la valeur directement par le clavier si le 1er chiffre du nombre est inférieur à la limite. Ce problème provient de l'écouteur utilisé. En effet, j'utilise ici l'évènement `input` qui écoute le moindre changement effectué sur la valeur de l'input sans même avoir besoin de valider (en appuyant sur la touche ENTREE par exemple). Il faudrait qu'on est la possibilité de changer la valeur sans que le navigateur écoute cela avant que l'on termine notre action.
+
+<!-- video -->
+
+Pour ce faire, il faut simplement changer l'écouteur avec l'évènement `input` par `change`. Cet évènement ne se déclenche que lorsque la saisie est validée. 
+
+
+
+

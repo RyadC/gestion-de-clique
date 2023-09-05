@@ -52,6 +52,7 @@ body {
 }
 
 .counter {
+  position: relative;
   font-size: $text-count-size;
   color: white;
 }
@@ -176,4 +177,26 @@ body {
 /* JS CLASSES */
 .displayError {
   top: 20px;
+}
+
+.shake-count {
+  color: $dark-red;
+  animation-name: shake-count-effect ;
+  animation-duration: 100ms;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+/* KEYFRAMES */
+@keyframes shake-count-effect {
+  0% {
+    left: -5px;
+  }
+
+  50%{
+    left: 5px;
+  }
+
+  100% {
+    left: 0px;
+  }
 }
