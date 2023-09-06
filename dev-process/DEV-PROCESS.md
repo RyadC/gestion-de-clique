@@ -153,32 +153,37 @@ Le code est sensiblement le même pour les deux limites. La différence va être
 ![Atteinte du compteur dès la limite atteinte](/dev-process/images/JS%20-%20Blocage%20du%20compteur%20dès%20la%20limite%20atteinte.png)
 
 ### Ajouter un effet au compteur lorsque la limite est atteinte
-...
+
+Nous voulons ajouter un bel effet pour signaler à l'utilisateur que la limite est atteinte. Cet effet consiste à changer la couleur de la valeur du compteur et de le faire "vibrer". Il faut donc ajouter un peu de `CSS` puis d'ajouter la classe `CSS` au compteur dès que la limite est atteinte.
+
+![Effet du compteur lorsque la limite est atteinte](/dev-process/video/JS%20-%20Effet%20compteur.gif)
+
+![Code pour appliquer l'effet au compteur lorsque la limite est atteinte](/dev-process/images/JS%20-%20Code%20effet%20compteur%201.png)
+![La fonction pour appliquer l'effet au compteur](/dev-process/images/JS%20-%20Code%20effet%20compteur%202.png)
 
 ### Bug 🪳: lorsque la limite basse est supérieure à 0
 
 Je pensais que tout était bon... mais non. En effet, lorsque mon compteur est initialisé à 0 (valeur de départ) et que la valeur basse est supérieur à 0, on s'attend à ce que la valeur du compteur passe de 0 à la valeur de la limite basse directement mais là le compteur s'incrémente de un en un sans prendre en considération cette restriction de limite. Le compteur évolue donc en dehors de sa limite.
 
-<!-- video -->
+![Bug lorsque la limite basse est supérieure à 0](/dev-process/video/JS-Bug-incrémentation-de-0-avec-limite-basse-sup-à-0.gif)
 
 Pour corriger ce comportement, il fallait simplement ajouter une condition venant contrôler si le compteur est inférieur à la limite basse et agir en conséquence.
 
-<!-- Photo -->
+![Code pour le bug lorsque la limite basse est supérieure à 0](/dev-process/images/JS%20-%20Fix%20bug%20incrémentation%20de%200%20avec%20limite%20basse%20sup%20à%200.png)
 
 ### Bug 🪳: lorsque la limite haute est inférieure à la limite basse (impossible !)
 
 Nouvelle surprise lors des tests... Il est possible d'incrémenter la limite basse de sorte à ce que celle-ci soit supérieure à la limite haute ce qui ne devrait pas être possible. Il faudrait donc empêcher cela et (côté UX) ajouter un message d'erreur pour faire comprendre cela à l'utilisateur.
 
-<!-- vidéo -->
+![Résultat après correction du bug lorsque la limite haute est inférieure à la limite basse](/dev-process/video/JS-Bug-incrémentation-de-0-avec-limite-basse-sup-à-0.gif)
 
 ### Bug 🪳: lorsqu'on veut modifier la limite par clavier
 
 Avec le code actuel, il n'est pas possible de modifier la valeur directement par le clavier si le 1er chiffre du nombre est inférieur à la limite. Ce problème provient de l'écouteur utilisé. En effet, j'utilise ici l'évènement `input` qui écoute le moindre changement effectué sur la valeur de l'input sans même avoir besoin de valider (en appuyant sur la touche ENTREE par exemple). Il faudrait qu'on est la possibilité de changer la valeur sans que le navigateur écoute cela avant que l'on termine notre action.
 
-<!-- video -->
-
 Pour ce faire, il faut simplement changer l'écouteur avec l'évènement `input` par `change`. Cet évènement ne se déclenche que lorsque la saisie est validée. 
 
+![Résultat après correction du bug lorsqu'on veut modifier la limite par clavier](/dev-process/video/JS-Bug-changer-la-limite-max-par-clavier-par-une-valeur-commencant-par-un-chiffre-inf-à-la-limite.gif)
 
 
 
