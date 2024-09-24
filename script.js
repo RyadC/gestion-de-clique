@@ -147,7 +147,28 @@ function shakeCount() {
   el_Counter.classList.add('shake-count');
 }
 
+/**
+ * Initialize counter on starting or reset
+ */
+function initializeCounter() {
+  const lowLimitValue = Number(el_LowLimitInput.value);
+  const highLimitValue = Number(el_HighLimitInput.value);
+  
+  if(lowLimitValue > 0) {
+    counterValue = lowLimitValue;
+  } else if(highLimitValue < 0) {
+    counterValue = highLimitValue;
+  } else {
+    counterValue = 0;
+  };
+
+  el_Counter.textContent = counterValue;
+  el_Counter.classList.remove('shake-count');
+}
 /******************************COOOOOOODE***********************************************/
+
+/* Initialiser le compteur au démarrage de sorte à avoir l'avancement du compteur voulu en adéquation avec la limite haute ou basse */
+initializeCounter();
 
 /* Incrémentation du compteur */
 el_BtnInc.addEventListener('click', incrementCount);
@@ -156,9 +177,7 @@ el_BtnInc.addEventListener('click', incrementCount);
 el_BtnDec.addEventListener('click', decrementCount);
 
 /* Remettre le compteur à 0 avec le bouton "Reset" */
-el_ResetBtn.addEventListener('click', () => {
-  el_Counter.textContent = 0;
-});
+el_ResetBtn.addEventListener('click', initializeCounter);
 
 /* Décrémenter au clique droit sur la zone de cliques */
 el_AreaClick.addEventListener('contextmenu', (e) => {
@@ -170,11 +189,41 @@ el_AreaClick.addEventListener('contextmenu', (e) => {
 /* Incrémenter au clique gauche sur la zone de cliques */
 el_AreaClick.addEventListener('click', incrementCount);
 
-/* Bloquer les limites si le sup est inf au sup ou l'inf est sup au sup */
+/* Incrémenter et décrémenter en appuyant sur la touche flèche haute ou basse */
+document.addEventListener('keydown', (e) => {
+  console.log(e)
+  e.preventDefault();
+
+  switch (e.key) {
+    case 'ArrowUp':
+      incrementCount();
+    break;
+
+    case 'ArrowDown':
+      decrementCount();
+    break;
+
+    case 'i':
+      incrementCount();
+    break;
+
+    case 'd':
+      decrementCount();
+    break;
+
+    case ' ':
+      initializeCounter();
+    break;
+  
+    default:
+      break;
+  };
+});
+
+/* Bloquer les limites si la haute est inf à la basse ou la basse est sup à la haute */
 el_HighLimitInput.addEventListener('change', (e) => {
   let highLimitValue = Number(el_HighLimitInput.value);  
   let lowLimitValue = Number(el_LowLimitInput.value);
-
 
   if(highLimitValue <= lowLimitValue) {
     highLimitValue = lowLimitValue;

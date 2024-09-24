@@ -186,4 +186,20 @@ Pour ce faire, il faut simplement changer l'écouteur avec l'évènement `input`
 ![Résultat après correction du bug lorsqu'on veut modifier la limite par clavier](/dev-process/video/JS-Bug-changer-la-limite-max-par-clavier-par-une-valeur-commencant-par-un-chiffre-inf-à-la-limite.gif)
 
 
+### Bug 🪳: Dysfonctionnement du reset
 
+Le réglage de ces bugs ont créés un effet de bord. Pour améilorer mon code, j'ai créé une variable global qui reflète la valeur de mon compteur et que j'utilise un peu partout. En cliquant sur le bouton Reset, je remets le compteur à 0 en assignant la valeur en dur. Ainsi le compteur se remet à 0 mais lorsque j'incrémente mon compteur, il prend comme valeur de départ la valeur avant le reset.
+
+![Résultat après correction du bug lorsqu'on veut modifier la limite par clavier](/dev-process/video/JS-Bug-mauvais-reset.gif)
+
+Il faut donc que je réinitialise ma variable globale à 0 étant donné que c'est elle qui est utilisé pour les autres boutons puis que j'affecte cette variable au compteur lors du reset. 
+
+<!-- video -->
+
+Je dois également enlever la classe utilisée en cas d'erreur si j'effectue un reset au même titre que la valeur du compteur :
+
+<!-- video -->
+
+
+
+!-- video -->
