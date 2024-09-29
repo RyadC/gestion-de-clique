@@ -212,3 +212,23 @@ body {
     left: 0px;
   }
 }/*# sourceMappingURL=styles.css.map */
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: fit-content;
+    min-width: 320px; 
+  }
+
+  .click-area__text-increment, .click-area__text-decrement {
+    text-align: center;
+  }
+
+  .counter {
+    font-size: 150px;
+  }
+
+  .modify-counter__btn, .modify-counter__input {
+    width: 75px;
+    height: 75px;
+  }
+}
